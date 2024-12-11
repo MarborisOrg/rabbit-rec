@@ -1,0 +1,15 @@
+{
+  "name": "rabbit_receive",
+  "version": "1.0.0",
+  "main": "rabbit.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MRB",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@marboris/coreutils": "^2.5.1"
+  }
+}
