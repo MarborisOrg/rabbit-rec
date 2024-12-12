@@ -2,8 +2,7 @@ import { alertCaller } from './alert.js';
 import { Core } from "@marboris/coreutils";
 
 class RabbitMQManager extends Core {
-  constructor() {
-    super();
+  Main() {
     this.channel = null;
   }
 
