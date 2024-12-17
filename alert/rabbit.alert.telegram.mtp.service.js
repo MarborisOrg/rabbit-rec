@@ -37,10 +37,14 @@ export class MidBot {
     });
     console.log("You should now be connected.");
     console.log("session: " + this.client.session.save());
+
+    this.sendMessageToUser(EnvConfig.adminTelId, "launched")
+
   }
 
-  async sendMessageToUser(userId, txt) {
+  async sendMessageToUser(userId, msg) {
     if (!this.client) throw new Error("Bot not starting");
-    await this.client.sendMessage(userId, { txt });
+    console.log(msg)
+    await this.client.sendMessage(userId, { message: msg });
   }
 }

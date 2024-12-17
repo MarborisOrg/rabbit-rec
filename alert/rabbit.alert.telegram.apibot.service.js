@@ -7,6 +7,7 @@ export class ApiBot {
     console.log(EnvConfig.tbot_token)
     this.bot.launch();
     console.log('api launched')
+    this.sendMessageToUser(EnvConfig.adminTelId, "launched")
   }
 
   sendMessageToUser(userId, txt) {
