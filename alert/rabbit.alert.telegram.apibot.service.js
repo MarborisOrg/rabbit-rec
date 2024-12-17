@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
-export default function () {
-    const bot = new Telegraf($.env.config.tbot_token);
+export default function (EnvConfig) {
+    const bot = new Telegraf(EnvConfig.tbot_token);
     bot.command('oldschool', (ctx) => ctx.reply('Hello'));
     bot.command('hipster', Telegraf.reply('λ'));
     const sendMessageToUser = (userId) => {

@@ -1,7 +1,7 @@
 import twilio from 'twilio';
-export function sendSms(body, from, to) {
-    const accountSid = $.env.config.accountSid;
-    const authToken = $.env.config.authToken;
+export function sendSms(EnvConfig, body, from, to) {
+    const accountSid = EnvConfig.accountSid;
+    const authToken = EnvConfig.authToken;
     const client = twilio(accountSid, authToken);
     client.messages
         .create({

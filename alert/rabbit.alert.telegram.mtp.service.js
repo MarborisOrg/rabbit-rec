@@ -1,15 +1,15 @@
 import readline from 'readline';
 import { TelegramClient } from 'telegram/index.js';
 import { StringSession } from 'telegram/sessions/index.js';
-export default function () {
-    const stringSession = new StringSession($.env.config.MTSession);
+export default function (EnvConfig) {
+    const stringSession = new StringSession(EnvConfig.MTSession);
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
     });
     void (async () => {
         console.log('Loading interactive example...');
-        const client = new TelegramClient(stringSession, $.env.config.apiId, $.env.config.apiHash, {
+        const client = new TelegramClient(stringSession, EnvConfig.apiId, EnvConfig.apiHash, {
             connectionRetries: 5,
         });
         await client.start({
