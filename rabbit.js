@@ -1,4 +1,4 @@
-import { alertCaller } from './alert.js';
+import { alertCaller, alertStarter } from './alert.js';
 import { Core } from "@marboris/coreutils";
 
 class RabbitMQManager extends Core {
@@ -52,6 +52,7 @@ class RabbitMQManager extends Core {
 
 (async () => {
   const rabbitMQManager = new RabbitMQManager();
+  await alertStarter(rabbitMQManager.config.EnvConfig)
   try {
     await rabbitMQManager.init();
     await rabbitMQManager.rec(rabbitMQManager.config.Args.queue);

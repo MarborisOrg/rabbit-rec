@@ -1,16 +1,21 @@
-import { Telegraf } from 'telegraf';
-export default function (EnvConfig) {
-    const bot = new Telegraf(EnvConfig.tbot_token);
-    bot.command('oldschool', (ctx) => ctx.reply('Hello'));
-    bot.command('hipster', Telegraf.reply('λ'));
-    const sendMessageToUser = (userId) => {
-        setInterval(() => {
-            echo('Sended');
-            void bot.telegram.sendMessage(userId, 'Test');
-        }, 5000);
-    };
-    sendMessageToUser(7366772920);
-    void bot.launch();
-    process.once('SIGINT', () => bot.stop('SIGINT'));
-    process.once('SIGTERM', () => bot.stop('SIGTERM'));
+import { Telegraf } from "telegraf";
+
+export class ApiBot {
+  bot;
+  start(EnvConfig) {
+    this.bot = new Telegraf(EnvConfig.tbot_token);
+    console.log(EnvConfig.tbot_token)
+    this.bot.launch();
+    console.log('api launched')
+  }
+
+  sendMessageToUser(userId, txt) {
+    if(!this.bot) throw new Error("Bot not starting")
+    this.bot.telegram.sendMessage(userId, txt);
+  }
+
+  stop() {
+    process.once("SIGINT", () => bot.stop("SIGINT"));
+    process.once("SIGTERM", () => bot.stop("SIGTERM"));
+  }
 }
