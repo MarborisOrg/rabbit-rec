@@ -6,23 +6,22 @@ import { sendSms } from "./alerts/sms.js";
 let apibot: ApiBot;
 let midbot: MidBot;
 
-export async function alertStarter(EnvConfig: Record<string, any>) {
+export async function alertStarter() {
   midbot = new MidBot();
   apibot = new ApiBot();
 
-  await midbot.start(EnvConfig);
-  apibot.start(EnvConfig);
+  await midbot.start();
+  apibot.start();
 }
 
-export function alertCaller(EnvConfig: Record<string, any>, msgContent: any) {
+export function alertCaller(msgContent: any) {
   if (msgContent && typeof msgContent.status === "string") {
     if (msgContent.status === "apibot") {
       apibot.sendMessageToUser(msgContent.id, msgContent.msg);
     } else if (msgContent.status === "mail") {
-      sendMail(EnvConfig, msgContent.to, msgContent.subject, msgContent.html);
+      sendMail(msgContent.to, msgContent.subject, msgContent.html);
     } else if (msgContent.status === "sms") {
       sendSms(
-        EnvConfig,
         msgContent.phone,
         msgContent.patternCode,
         msgContent.vars

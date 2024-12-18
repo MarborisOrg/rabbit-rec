@@ -4,8 +4,8 @@ import { StringSession } from "telegram/sessions/index.js";
 
 export class MidBot {
   client: TelegramClient | undefined;
-  async start(EnvConfig: Record<string, any>) {
-    const stringSession = new StringSession(EnvConfig.MTSession);
+  async start() {
+    const stringSession = new StringSession(configs.EnvConfig.MTSession);
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -14,8 +14,8 @@ export class MidBot {
     console.log("Loading interactive example...");
     this.client = new TelegramClient(
       stringSession,
-      EnvConfig.apiId,
-      EnvConfig.apiHash,
+      configs.EnvConfig.apiId,
+      configs.EnvConfig.apiHash,
       {
         connectionRetries: 5,
       }
@@ -38,7 +38,7 @@ export class MidBot {
     console.log("You should now be connected.");
     console.log("session: " + this.client.session.save());
 
-    this.sendMessageToUser(EnvConfig.adminTelId, "launched")
+    this.sendMessageToUser(configs.EnvConfig.adminTelId, "launched")
 
   }
 

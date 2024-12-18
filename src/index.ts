@@ -5,14 +5,15 @@ class RabbitMQManager extends Core {
   channel: any;
   Main() {
     this.channel = null;
+    globalThis.configs = this.config
   }
 
   async init() {
-    if (!this.config.EnvConfig.amqp) {
+    if (!configs.EnvConfig.amqp) {
       throw new Error("[env] amqp is required.");
     }
     try {
-      await this.amqpManager.connect(this.config.EnvConfig.amqp);
+      await this.amqpManager.connect(configs.EnvConfig.amqp);
       this.channel = this.amqpManager.getChannel();
       console.log("RabbitMQ connection and channel created.");
     } catch (err) {
@@ -21,7 +22,8 @@ class RabbitMQManager extends Core {
     }
   }
 
-  async rec(queue: string) {
+  async rec() {
+    const queue = configs.Args.queue
     if (!this.channel || !queue) {
       throw new Error("Channel is not initialized.");
     }
@@ -34,7 +36,7 @@ class RabbitMQManager extends Core {
         if (message) {
           const msgContent = JSON.parse(message.content.toString());
           console.log(" [x] Received '%s' from queue '%s'", msgContent, queue);
-          void alertCaller(this.config.EnvConfig, msgContent);
+          void alertCaller(msgContent);
           this.channel.ack(message);
         }
       },
@@ -49,18 +51,14 @@ class RabbitMQManager extends Core {
     await this.amqpManager.close();
     console.log("RabbitMQ connection closed.");
   }
-
-  public getConfig(){
-    return this.config
-  }
 }
 
 (async () => {
   const rabbitMQManager = new RabbitMQManager();
-  await alertStarter(rabbitMQManager.getConfig().EnvConfig)
+  await alertStarter()
   try {
     await rabbitMQManager.init();
-    await rabbitMQManager.rec(rabbitMQManager.getConfig().Args.queue);
+    await rabbitMQManager.rec();
   } catch (err) {
     console.error("Error occurred during message sending:", err);
   }

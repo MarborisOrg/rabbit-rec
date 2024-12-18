@@ -2,12 +2,12 @@ import { Telegraf } from "telegraf";
 
 export class ApiBot {
   bot: Telegraf | undefined;
-  start(EnvConfig: Record<string, any>) {
-    this.bot = new Telegraf(EnvConfig.tbot_token);
-    console.log(EnvConfig.tbot_token);
+  start() {
+    this.bot = new Telegraf(configs.EnvConfig.tbot_token);
+    console.log(configs.EnvConfig.tbot_token);
     this.bot.launch();
     console.log("api launched");
-    this.sendMessageToUser(EnvConfig.adminTelId, "launched");
+    this.sendMessageToUser(configs.EnvConfig.adminTelId, "launched");
   }
 
   sendMessageToUser(userId: string | number, txt: string) {
