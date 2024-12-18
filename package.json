@@ -1,7 +1,7 @@
 {
   "name": "rabbit_receive",
   "version": "1.0.0",
-  "main": "rabbit.js",
+  "main": "./src/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

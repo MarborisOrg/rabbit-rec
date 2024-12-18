@@ -1,6 +1,6 @@
 import { sendMail } from "./alert/mail.js";
-import { ApiBot } from "./alert/rabbit.alert.telegram.apibot.service.js";
-import { MidBot } from "./alert/rabbit.alert.telegram.mtp.service.js";
+import { ApiBot } from "./alert/apibot.js";
+import { MidBot } from "./alert/midbot.js";
 import { sendSms } from "./alert/sms.js";
 
 let apibot;
