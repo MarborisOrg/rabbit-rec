@@ -1,7 +1,7 @@
-import { sendMail } from "./alert/mail.js";
-import { ApiBot } from "./alert/apibot.js";
-import { MidBot } from "./alert/midbot.js";
-import { sendSms } from "./alert/sms.js";
+import { sendMail } from "./alerts/mail.js";
+import { ApiBot } from "./alerts/apibot.js";
+import { MidBot } from "./alerts/midbot.js";
+import { sendSms } from "./alerts/sms.js";
 
 let apibot;
 let midbot;
