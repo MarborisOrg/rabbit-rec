@@ -1,16 +1,16 @@
 import { sendMail } from "./alerts/mail.js";
 import { ApiBot } from "./alerts/apibot.js";
-import { MidBot } from "./alerts/midbot.js";
+// import { MidBot } from "./alerts/midbot.js";
 import { sendSms } from "./alerts/sms.js";
 
 let apibot: ApiBot;
-let midbot: MidBot;
+// let midbot: MidBot;
 
 export async function alertStarter() {
-  midbot = new MidBot();
+  // midbot = new MidBot();
   apibot = new ApiBot();
 
-  await midbot.start();
+  // await midbot.start();
   apibot.start();
 }
 

@@ -2,6 +2,9 @@ import readline from "readline";
 import { TelegramClient } from "telegram/index.js";
 import { StringSession } from "telegram/sessions/index.js";
 
+/**
+ * @deprecated Not now
+ */
 export class MidBot {
   client: TelegramClient | undefined;
   async start() {
