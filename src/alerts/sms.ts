@@ -1,6 +1,6 @@
 import request from "request"
 
-export function sendSms(EnvConfig, phone, patternCode, vars) {
+export function sendSms(EnvConfig: Record<string, any>, phone: string, patternCode: string, vars: any) {
     // let vars = {code: 1252}
     // patternCode: 3e61w8d1wi1vpwe
     console.log('sms send')
@@ -18,7 +18,7 @@ export function sendSms(EnvConfig, phone, patternCode, vars) {
         },
         json: true,
       },
-      function (error, response, body) {
+      function (error, response, _body) {
         if (error) {
           console.log(error);
         }

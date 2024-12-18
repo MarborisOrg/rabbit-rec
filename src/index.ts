@@ -2,6 +2,7 @@ import { alertCaller, alertStarter } from './alert.js';
 import { Core } from "@marboris/coreutils";
 
 class RabbitMQManager extends Core {
+  channel: any;
   Main() {
     this.channel = null;
   }
@@ -20,7 +21,7 @@ class RabbitMQManager extends Core {
     }
   }
 
-  async rec(queue) {
+  async rec(queue: string) {
     if (!this.channel || !queue) {
       throw new Error("Channel is not initialized.");
     }
@@ -29,7 +30,7 @@ class RabbitMQManager extends Core {
     await this.channel.prefetch(1);
     await this.channel.consume(
       queue,
-      (message) => {
+      (message: any) => {
         if (message) {
           const msgContent = JSON.parse(message.content.toString());
           console.log(" [x] Received '%s' from queue '%s'", msgContent, queue);
@@ -48,14 +49,18 @@ class RabbitMQManager extends Core {
     await this.amqpManager.close();
     console.log("RabbitMQ connection closed.");
   }
+
+  public getConfig(){
+    return this.config
+  }
 }
 
 (async () => {
   const rabbitMQManager = new RabbitMQManager();
-  await alertStarter(rabbitMQManager.config.EnvConfig)
+  await alertStarter(rabbitMQManager.getConfig().EnvConfig)
   try {
     await rabbitMQManager.init();
-    await rabbitMQManager.rec(rabbitMQManager.config.Args.queue);
+    await rabbitMQManager.rec(rabbitMQManager.getConfig().Args.queue);
   } catch (err) {
     console.error("Error occurred during message sending:", err);
   }

@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-export function sendMail(EnvConfig, to, subject, html) {
+export function sendMail(EnvConfig: Record<string, any>, to: string, subject: string, html: string) {
   console.log("mail send");
   const transporter = nodemailer.createTransport({
     host: EnvConfig.host,

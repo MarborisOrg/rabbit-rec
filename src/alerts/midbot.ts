@@ -3,8 +3,8 @@ import { TelegramClient } from "telegram/index.js";
 import { StringSession } from "telegram/sessions/index.js";
 
 export class MidBot {
-  client;
-  async start(EnvConfig) {
+  client: TelegramClient | undefined;
+  async start(EnvConfig: Record<string, any>) {
     const stringSession = new StringSession(EnvConfig.MTSession);
     const rl = readline.createInterface({
       input: process.stdin,
@@ -42,7 +42,7 @@ export class MidBot {
 
   }
 
-  async sendMessageToUser(userId, msg) {
+  async sendMessageToUser(userId: string | number, msg: string) {
     if (!this.client) throw new Error("Bot not starting");
     console.log(msg)
     await this.client.sendMessage(userId, { message: msg });

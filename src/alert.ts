@@ -3,10 +3,10 @@ import { ApiBot } from "./alerts/apibot.js";
 import { MidBot } from "./alerts/midbot.js";
 import { sendSms } from "./alerts/sms.js";
 
-let apibot;
-let midbot;
+let apibot: ApiBot;
+let midbot: MidBot;
 
-export async function alertStarter(EnvConfig) {
+export async function alertStarter(EnvConfig: Record<string, any>) {
   midbot = new MidBot();
   apibot = new ApiBot();
 
@@ -14,7 +14,7 @@ export async function alertStarter(EnvConfig) {
   apibot.start(EnvConfig);
 }
 
-export function alertCaller(EnvConfig, msgContent) {
+export function alertCaller(EnvConfig: Record<string, any>, msgContent: any) {
   if (msgContent && typeof msgContent.status === "string") {
     if (msgContent.status === "apibot") {
       apibot.sendMessageToUser(msgContent.id, msgContent.msg);
