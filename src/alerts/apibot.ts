@@ -6,8 +6,8 @@ export class ApiBot {
     this.bot = new Telegraf(configs.EnvConfig.tbot_token);
     console.log(configs.EnvConfig.tbot_token);
     this.bot.launch();
-    console.log("api launched");
-    this.sendMessageToUser(configs.EnvConfig.adminTelId, "launched");
+    console.log("info: ApiBot launched");
+    this.sendMessageToUser(configs.EnvConfig.adminTelId, "info: ApiBot launched");
   }
 
   sendMessageToUser(userId: string | number, txt: string) {

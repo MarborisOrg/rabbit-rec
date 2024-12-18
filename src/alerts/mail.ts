@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 
 export function sendMail(to: string, subject: string, html: string) {
-  console.log("mail send");
+  console.log("info: Mail Send..");
   const transporter = nodemailer.createTransport({
     host: configs.EnvConfig.host,
     port: configs.EnvConfig.port,
@@ -26,6 +26,6 @@ export function sendMail(to: string, subject: string, html: string) {
     if (error) {
       return console.log("Error occurred: " + error.message);
     }
-    console.log("Email sent: " + info.response);
+    console.log("Success: Email sent: " + info.response);
   });
 }

@@ -11,7 +11,7 @@ export class MidBot {
       output: process.stdout,
     });
 
-    console.log("Loading interactive example...");
+    console.log("info: Loading interactive MidBot...");
     this.client = new TelegramClient(
       stringSession,
       configs.EnvConfig.apiId,
@@ -35,8 +35,8 @@ export class MidBot {
         ),
       onError: (err) => console.log(err),
     });
-    console.log("You should now be connected.");
-    console.log("session: " + this.client.session.save());
+    console.log("Success: You should now be connected.");
+    console.log("info: session: " + this.client.session.save());
 
     this.sendMessageToUser(configs.EnvConfig.adminTelId, "launched")
 

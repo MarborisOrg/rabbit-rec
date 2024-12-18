@@ -3,7 +3,7 @@ import request from "request"
 export function sendSms(phone: string, patternCode: string, vars: any) {
     // let vars = {code: 1252}
     // patternCode: 3e61w8d1wi1vpwe
-    console.log('sms send')
+    console.log('info: Sms Send..')
     request.post(
       {
         url: configs.EnvConfig.url_sms,
