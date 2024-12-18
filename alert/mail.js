@@ -6,6 +6,8 @@ export function sendMail(EnvConfig, to, subject, html) {
     host: EnvConfig.host,
     port: EnvConfig.port,
     secure: EnvConfig.secure,
+    // true برای پورت 465 و false برای پورت 587
+    // معمولاً 465 برای SSL و 587 برای TLS
     auth: {
       type: "LOGIN",
       user: EnvConfig.auth_user,
