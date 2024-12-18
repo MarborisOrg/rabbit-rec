@@ -33,7 +33,7 @@ class RabbitMQManager extends Core {
         if (message) {
           const msgContent = JSON.parse(message.content.toString());
           console.log(" [x] Received '%s' from queue '%s'", msgContent, queue);
-          void alertCaller(msgContent);
+          void alertCaller(this.config.EnvConfig, msgContent);
           this.channel.ack(message);
         }
       },
